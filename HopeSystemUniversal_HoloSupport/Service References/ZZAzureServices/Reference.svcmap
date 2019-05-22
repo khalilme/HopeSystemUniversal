@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="60b2de9f-9ef2-44db-bfab-6aca6cb461b7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://api.developers.ps/HopeService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="HopeService.xsd" MetadataType="Schema" ID="418f4b9e-a5c8-41ba-a75c-fd66aa0b2d16" SourceId="1" SourceUrl="http://api.developers.ps/HopeService.svc?xsd=xsd0" />
+    <MetadataFile FileName="HopeService1.xsd" MetadataType="Schema" ID="6e1209a5-e00b-4411-8e05-31d20df97515" SourceId="1" SourceUrl="http://api.developers.ps/HopeService.svc?xsd=xsd1" />
+    <MetadataFile FileName="HopeService2.xsd" MetadataType="Schema" ID="49a3da43-718f-4e47-8b63-d7e6f12718f1" SourceId="1" SourceUrl="http://api.developers.ps/HopeService.svc?xsd=xsd4" />
+    <MetadataFile FileName="HopeService.wsdl" MetadataType="Wsdl" ID="6625b6c4-3b59-43ed-9f56-dd22b14acea3" SourceId="1" SourceUrl="http://api.developers.ps/HopeService.svc?wsdl" />
+    <MetadataFile FileName="HopeService3.xsd" MetadataType="Schema" ID="3e6403ea-7089-475b-a056-092036cfad6a" SourceId="1" SourceUrl="http://api.developers.ps/HopeService.svc?xsd=xsd2" />
+    <MetadataFile FileName="HopeService4.xsd" MetadataType="Schema" ID="bd4e8ded-9133-467d-bd48-b517fccc2ec2" SourceId="1" SourceUrl="http://api.developers.ps/HopeService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

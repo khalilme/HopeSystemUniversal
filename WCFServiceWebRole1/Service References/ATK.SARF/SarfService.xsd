@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://nlptoolkit.cloudapp.net" elementFormDefault="qualified" targetNamespace="http://nlptoolkit.cloudapp.net" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="AnalyzeToken">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="word" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="lingMode" type="tns:LinguisticMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="LinguisticMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Classical" />
+      <xs:enumeration value="Colloquial" />
+      <xs:enumeration value="Conversational" />
+      <xs:enumeration value="ColloquialAndConversational" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AnalyzeTokenResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="AnalyzeTokenResult" type="tns:SarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analyses" type="tns:ArrayOfSarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="SarfErrorCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="ErrorNonInitialized" />
+      <xs:enumeration value="ErrorAccessDenied" />
+      <xs:enumeration value="ErrorQuotaExceeded" />
+      <xs:enumeration value="ErrorAuthintication" />
+      <xs:enumeration value="ErrorMaxLengthExceeded" />
+      <xs:enumeration value="ErrorInvalidParameter" />
+      <xs:enumeration value="ErrorNotImplemented" />
+      <xs:enumeration value="ErrorUnknown" />
+      <xs:enumeration value="ErrorInitialization" />
+      <xs:enumeration value="ErrorInitializationPattern" />
+      <xs:enumeration value="ErrorInitializationPos" />
+      <xs:enumeration value="ErrorInitializationPrefix" />
+      <xs:enumeration value="ErrorInitializationRoot" />
+      <xs:enumeration value="ErrorInitializationRule" />
+      <xs:enumeration value="ErrorInitializationStem" />
+      <xs:enumeration value="ErrorInitializationSuffix" />
+      <xs:enumeration value="ErrorInitializationCorpus" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfSarfAnalysis">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SarfAnalysis" nillable="true" type="tns:SarfAnalysis" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="SarfAnalysis">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="DiacToken" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Stem" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Root" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Pattern" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Pos" type="tns:PartOfSpeech" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prefix1" type="tns:Prefix" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prefix2" type="tns:Prefix" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prefix3" type="tns:Prefix" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Suffix1" type="tns:Suffix" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Suffix2" type="tns:Suffix" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Suffix3" type="tns:Suffix" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsDefinitiveAL" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsNunation" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsBorrowedWord" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsProperName" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="IsTitle" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Nunatable" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AccusativeNunatable" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="GeneativeNunatable" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NominativeNunatable" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop100" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop90" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop80" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop70" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop60" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop50" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop40" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop30" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop20" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop10" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prop0" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CaseEndingIncluded" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbPos" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MorphoSyntacticFeatures" type="xs:long" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Probability" type="xs:float" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="PartOfSpeech">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ESM_ALA" />
+      <xs:enumeration value="ESM_ALA_TAKSEER" />
+      <xs:enumeration value="ESM_TASGHEER" />
+      <xs:enumeration value="ESM_TASGHEER_TAKSEER" />
+      <xs:enumeration value="ESM_ZAMAN_MOGARRAD" />
+      <xs:enumeration value="ESM_ZAMAN_MAZEED" />
+      <xs:enumeration value="ESM_ZAMAN_MOGARRAD_TAKSEER" />
+      <xs:enumeration value="ESM_ZAMAN_MAZEED_TAKSEER" />
+      <xs:enumeration value="ESM_3ADAD" />
+      <xs:enumeration value="ESM_3ADAD_TAKSEER" />
+      <xs:enumeration value="ESM_3ALAM" />
+      <xs:enumeration value="ESM_3ALAM_TAKSEER" />
+      <xs:enumeration value="ESM_MAKAN_MOGARRAD" />
+      <xs:enumeration value="ESM_MAKAN_MAZEED" />
+      <xs:enumeration value="ESM_MAKAN_MOGARRAD_TAKSEER" />
+      <xs:enumeration value="ESM_MAKAN_MAZEED_TAKSEER" />
+      <xs:enumeration value="ESM_THAT" />
+      <xs:enumeration value="ESM_THAT_TAKSEER" />
+      <xs:enumeration value="LAQAB" />
+      <xs:enumeration value="LAQAB_TAKSEER" />
+      <xs:enumeration value="ESM_FE3L" />
+      <xs:enumeration value="FE3L_AMR_MOGARRAD" />
+      <xs:enumeration value="FE3L_AMR_MAZEED" />
+      <xs:enumeration value="FE3L_GAMED" />
+      <xs:enumeration value="FE3L_MADI_MOGARRAD" />
+      <xs:enumeration value="FE3L_MADI_MAZEED" />
+      <xs:enumeration value="FE3L_MADI_MOGARRAD_MAGHOOL" />
+      <xs:enumeration value="FE3L_MADI_MAZEED_MAGHOOL" />
+      <xs:enumeration value="FE3L_MODARE3_MOGARRAD" />
+      <xs:enumeration value="FE3L_MODARE3_MAZEED" />
+      <xs:enumeration value="FE3L_MODARE3_MOGARRAD_MAGHOOL" />
+      <xs:enumeration value="FE3L_MODARE3_MAZEED_MAGHOOL" />
+      <xs:enumeration value="AF3AL_TA3AGOB" />
+      <xs:enumeration value="ESM_TAFDEEL" />
+      <xs:enumeration value="ESM_TAFDEEL_TAKSEER" />
+      <xs:enumeration value="ESM_FA3EL_MOGARRAD" />
+      <xs:enumeration value="ESM_FA3EL_MAZEED" />
+      <xs:enumeration value="ESM_FA3EL_MOGARRAD_TAKSEER" />
+      <xs:enumeration value="ESM_FA3EL_MAZEED_TAKSEER" />
+      <xs:enumeration value="ESM_MAF3OOL_MOGARRAD" />
+      <xs:enumeration value="ESM_MAF3OOL_MAZEED" />
+      <xs:enumeration value="ESM_MAF3OOL_MOGARRAD_TAKSEER" />
+      <xs:enumeration value="ESM_MAF3OOL_MAZEED_TAKSEER" />
+      <xs:enumeration value="SEFA_MOSHABBAHA" />
+      <xs:enumeration value="SEFA_MOSHABBAHA_TAKSEER" />
+      <xs:enumeration value="SEFA_MANSOOBA" />
+      <xs:enumeration value="SEFA_MANSOOBA_TAKSEER" />
+      <xs:enumeration value="SEEGHAT_MOBALAGHA" />
+      <xs:enumeration value="SEEGHAT_MOBALAGHA_TAKSEER" />
+      <xs:enumeration value="ZARF" />
+      <xs:enumeration value="ZARF_TAKSEER" />
+      <xs:enumeration value="ZARF_ZAMAN" />
+      <xs:enumeration value="ZARF_ZAMAN_TAKSEER" />
+      <xs:enumeration value="ZARF_MAKAN" />
+      <xs:enumeration value="ZARF_MAKAN_TAKSEER" />
+      <xs:enumeration value="EKHTESAR" />
+      <xs:enumeration value="ESM_ESHARA" />
+      <xs:enumeration value="ESM_MAQSOOR" />
+      <xs:enumeration value="ESM_MAWSOOL" />
+      <xs:enumeration value="ALASMAA_ALKHAMSA" />
+      <xs:enumeration value="ADAT_ESTETHNA2" />
+      <xs:enumeration value="ADAT_ESTEFHAM" />
+      <xs:enumeration value="ADAT_TASWEEF" />
+      <xs:enumeration value="ADAT_TANBEEH" />
+      <xs:enumeration value="ADAT_7ASR" />
+      <xs:enumeration value="ESM_TAWKEED" />
+      <xs:enumeration value="ESM_TAWKEED_TAKSEER" />
+      <xs:enumeration value="HARF_EBTEDA2" />
+      <xs:enumeration value="HARF_ESTEDRAK" />
+      <xs:enumeration value="HARF_ESTEFTA7" />
+      <xs:enumeration value="HARF_TA7DEED" />
+      <xs:enumeration value="HARF_TA7QEEQ" />
+      <xs:enumeration value="HARF_TASWEEF" />
+      <xs:enumeration value="HARF_TASHBEEH" />
+      <xs:enumeration value="HARF_TA3REEF" />
+      <xs:enumeration value="HARF_TA3LEEL" />
+      <xs:enumeration value="HARF_TAFSEER" />
+      <xs:enumeration value="HARF_GARR" />
+      <xs:enumeration value="HARF_GAWAB" />
+      <xs:enumeration value="HARF_SHART" />
+      <xs:enumeration value="HARF_3ATF" />
+      <xs:enumeration value="HARF_MO3ADALA" />
+      <xs:enumeration value="HARF_NASEKH" />
+      <xs:enumeration value="HARF_NEDA2" />
+      <xs:enumeration value="HARF_NASB" />
+      <xs:enumeration value="HARF_NAFY" />
+      <xs:enumeration value="HARF_HEGA2" />
+      <xs:enumeration value="RAQAM" />
+      <xs:enumeration value="RAMZ" />
+      <xs:enumeration value="DAMEER_GHA2EB" />
+      <xs:enumeration value="DAMEER_MOTAKALLEM" />
+      <xs:enumeration value="DAMEER_MOKHATAB" />
+      <xs:enumeration value="ALAMAT_TASHKEEL" />
+      <xs:enumeration value="MADEE7" />
+      <xs:enumeration value="ESM_MARRA_MOGARRAD" />
+      <xs:enumeration value="ESM_MARRA_MOGARRAD_TAKSEER" />
+      <xs:enumeration value="ESM_MARRA_MAZEED" />
+      <xs:enumeration value="ESM_HAY2A" />
+      <xs:enumeration value="ESM_HAY2A_TAKSEER" />
+      <xs:enumeration value="MASDAR_MOGARRAD" />
+      <xs:enumeration value="MASDAR_MAZEED" />
+      <xs:enumeration value="MASDAR_MOGARRAD_TAKSEER" />
+      <xs:enumeration value="MASDAR_MAZEED_TAKSEER" />
+      <xs:enumeration value="MASDAR_SENA3Y" />
+      <xs:enumeration value="MASDAR_SENA3Y_TAKSEER" />
+      <xs:enumeration value="MASDAR_MEEMEY_MOGARRAD" />
+      <xs:enumeration value="MASDAR_MEEMEY_MAZEED" />
+      <xs:enumeration value="MASDAR_MEEMEY_MOGARRAD_TAKSEER" />
+      <xs:enumeration value="MASDAR_MEEMEY_MAZEED_TAKSEER" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Prefix">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="PREFIX_NULL" />
+      <xs:enumeration value="PREFIX_ALEF_ESTEFHAM" />
+      <xs:enumeration value="PREFIX_AL_TA3REEF" />
+      <xs:enumeration value="PREFIX_LAM_TA3LEEL" />
+      <xs:enumeration value="PREFIX_LAM_TAWKEED" />
+      <xs:enumeration value="PREFIX_SEEN_ESTEQBAL" />
+      <xs:enumeration value="PREFIX_LA_NAFY" />
+      <xs:enumeration value="PREFIX_LAM_AMR" />
+      <xs:enumeration value="PREFIX_WAW_3ATF" />
+      <xs:enumeration value="PREFIX_FA2_3ATF" />
+      <xs:enumeration value="PREFIX_BA2_GARR" />
+      <xs:enumeration value="PREFIX_KAF_GARR" />
+      <xs:enumeration value="PREFIX_LAM_GARR" />
+      <xs:enumeration value="PREFIX_ALEF_ANAIT_MA3LOOM" />
+      <xs:enumeration value="PREFIX_TA2_ANAIT_MA3LOOM" />
+      <xs:enumeration value="PREFIX_NUN_ANAIT_MA3LOOM" />
+      <xs:enumeration value="PREFIX_YA2_ANAIT_MA3LOOM" />
+      <xs:enumeration value="PREFIX_ALEF_ANAIT_MA3LOOM_MAGHOOL" />
+      <xs:enumeration value="PREFIX_TA2_ANAIT_MA3LOOM_MAGHOOL" />
+      <xs:enumeration value="PREFIX_NUN_ANAIT_MA3LOOM_MAGHOOL" />
+      <xs:enumeration value="PREFIX_YA2_ANAIT_MA3LOOM_MAGHOOL" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Suffix">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="SUFFIX_NULL" />
+      <xs:enumeration value="SUFFIX_ALEF_TANWEEN" />
+      <xs:enumeration value="SUFFIX_TA2_MARBOOTA_TA2NEETH" />
+      <xs:enumeration value="SUFFIX_ALEF_MADD_TATHNEYA" />
+      <xs:enumeration value="SUFFIX_AAN_TATHNEYA" />
+      <xs:enumeration value="SUFFIX_AY_TATHNEYA" />
+      <xs:enumeration value="SUFFIX_AYN_TATHNEYA" />
+      <xs:enumeration value="SUFFIX_TA_TATHNEYA_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_TAN_TATHNEYA_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_TAY_TATHNEYA_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_TAYN_TATHNEYA_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_NUN_TAWKEED_KHAFEEFA" />
+      <xs:enumeration value="SUFFIX_NUN_TAWKEED_THAQEELA" />
+      <xs:enumeration value="SUFFIX_AAT_GAM3_MO2ANATH_SALEM" />
+      <xs:enumeration value="SUFFIX_WAW_GAM3_MOTHAKAR_SALEM" />
+      <xs:enumeration value="SUFFIX_OON_GAM3_MOTHAKAR_SALEM" />
+      <xs:enumeration value="SUFFIX_YA2_GAM3_MOTHAKAR_SALEM" />
+      <xs:enumeration value="SUFFIX_EEN_GAM3_MOTHAKAR_SALEM" />
+      <xs:enumeration value="SUFFIX_TA2_FA3EL_TA2NEETH" />
+      <xs:enumeration value="SUFFIX_ALEF_MADD_FA3EL_MOTHANA" />
+      <xs:enumeration value="SUFFIX_AAN_FA3EL_MOTHANA" />
+      <xs:enumeration value="SUFFIX_TA_FA3EL_MOTHANA_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_WAW_ALEF_GAMA3A_FA3EL" />
+      <xs:enumeration value="SUFFIX_OON_FA3EL_GAM3" />
+      <xs:enumeration value="SUFFIX_NUN_NESWA_FA3EL" />
+      <xs:enumeration value="SUFFIX_TA2_FA3EL_MOKHATAB" />
+      <xs:enumeration value="SUFFIX_TI_FA3ELA_MOKHATABA" />
+      <xs:enumeration value="SUFFIX_EEN_MOKHATABA_FA3EL" />
+      <xs:enumeration value="SUFFIX_YA2_MOKHATABA_FA3EL" />
+      <xs:enumeration value="SUFFIX_TUMA_FA3EL_MOTHANA_MOKHATAB" />
+      <xs:enumeration value="SUFFIX_TUM_FA3EL_GAM3_MOTHAKAR" />
+      <xs:enumeration value="SUFFIX_TUN_FA3EL_GAM3_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_TA2_FA3EL_MOTAKALLEM" />
+      <xs:enumeration value="SUFFIX_NA_FA3EL_MOTAKALEMEEN" />
+      <xs:enumeration value="SUFFIX_KAF_MODAF_MOKHATAB" />
+      <xs:enumeration value="SUFFIX_KI_MODAF_MOKHATABA_MOFRAD" />
+      <xs:enumeration value="SUFFIX_KUMA_MODAF_MOKHATAB_MOTHANA" />
+      <xs:enumeration value="SUFFIX_KUM_MODAF_MOKHATAB_GAM3" />
+      <xs:enumeration value="SUFFIX_KUNNA_MODAF_MOKHATAB_GAM3_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_YA2_MODAF_MELKEYA" />
+      <xs:enumeration value="SUFFIX_NA_MODAF_MOTAKALEMEEN" />
+      <xs:enumeration value="SUFFIX_HA2_MODAF_GHA2EB_MOTHAKKAR" />
+      <xs:enumeration value="SUFFIX_HA_MODAF_GHA2EB_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_HUMA_MODAF_GHA2EB_MOTHANNA" />
+      <xs:enumeration value="SUFFIX_HUM_MODAF_GHA2EB_GAM3_MOTHAKAR" />
+      <xs:enumeration value="SUFFIX_HUNNA_MODAF_GHA2EB_GAM3_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_KA_MOKHATAB_MOFRAD" />
+      <xs:enumeration value="SUFFIX_KI_MOKHATAB_MOFRAD_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_KUMA_MOKHATAB_MOTHANA_MOTHAKAR" />
+      <xs:enumeration value="SUFFIX_KUM_MOKHATAB_GAM3_MOTHAKAR" />
+      <xs:enumeration value="SUFFIX_KUNNA_MOKHATAB_GAM3_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_NI_WEQAYA_MOTAKALLEM" />
+      <xs:enumeration value="SUFFIX_NA_MOTAKALEMEEN" />
+      <xs:enumeration value="SUFFIX_HU_GHA2EB_MOTHAKAR" />
+      <xs:enumeration value="SUFFIX_HA_GHA2EB_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_HUMA_GHA2EB_MOTHANA" />
+      <xs:enumeration value="SUFFIX_HUM_GHA2EB_GAM3_MOTHAKAR" />
+      <xs:enumeration value="SUFFIX_HUN_GHA2EB_GAM3_MO2ANATH" />
+      <xs:enumeration value="SUFFIX_HU_GHA2EB_MOTHAKAR_MAF3OOL_THANI" />
+      <xs:enumeration value="SUFFIX_HA_GHA2EB_MO2ANATH_MAF3OOL_THANI" />
+      <xs:enumeration value="SUFFIX_HUMA_GHA2EB_MOTHANA_MAF3OOL_THANI" />
+      <xs:enumeration value="SUFFIX_HUM_GHA2EB_GAM3_MAF3OOL_THANI" />
+      <xs:enumeration value="SUFFIX_HUN_GHA2EB_GAM3_MO2ANATH_MAF3OOL_THANI" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="AnalyzeTokensArray">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="words" type="tns:ArrayOfString" />
+        <xs:element minOccurs="1" maxOccurs="1" name="lingMode" type="tns:LinguisticMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AnalyzeTokensArrayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="AnalyzeTokensArrayResult" type="tns:ArrayOfSarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analyses" type="tns:ArrayOfArrayOfSarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfSarfErrorCode">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SarfErrorCode" type="tns:SarfErrorCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfArrayOfSarfAnalysis">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ArrayOfSarfAnalysis" nillable="true" type="tns:ArrayOfSarfAnalysis" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SynthesizeWord">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inAnalysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="1" maxOccurs="1" name="lingMode" type="tns:LinguisticMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SynthesizeWordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="SynthesizeWordResult" type="tns:SarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="outAnalyses" type="tns:ArrayOfSarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SynthesizeWordsArray">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inAnalyses" type="tns:ArrayOfSarfAnalysis" />
+        <xs:element minOccurs="1" maxOccurs="1" name="lingMode" type="tns:LinguisticMode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SynthesizeWordsArrayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="SynthesizeWordsArrayResult" type="tns:ArrayOfSarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="outAnalyses" type="tns:ArrayOfArrayOfSarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPlural">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ignoreAffixation" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPluralResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="GetPluralResult" type="tns:SarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analyses" type="tns:ArrayOfSarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSingular">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ignoreAffixation" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSingularResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="GetSingularResult" type="tns:SarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analyses" type="tns:ArrayOfSarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInflections">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="1" maxOccurs="1" name="lingMode" type="tns:LinguisticMode" />
+        <xs:element minOccurs="1" maxOccurs="1" name="diacritized" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInflectionsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="GetInflectionsResult" type="tns:SarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inflections" type="tns:ArrayOfString" />
+        <xs:element minOccurs="1" maxOccurs="1" name="totalInflections" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInflectionsEx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="1" maxOccurs="1" name="lingMode" type="tns:LinguisticMode" />
+        <xs:element minOccurs="1" maxOccurs="1" name="diacritized" type="xs:boolean" />
+        <xs:element minOccurs="1" maxOccurs="1" name="maxInflections" type="xs:int" />
+        <xs:element minOccurs="1" maxOccurs="1" name="startIndex" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetInflectionsExResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="GetInflectionsExResult" type="tns:SarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inflections" type="tns:ArrayOfString" />
+        <xs:element minOccurs="1" maxOccurs="1" name="totalInflections" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDerivatives">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="1" maxOccurs="1" name="pos" type="tns:PartOfSpeech" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ignoreAffixation" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDerivativesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="GetDerivativesResult" type="tns:SarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analyses" type="tns:ArrayOfSarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllDerivatives">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="1" maxOccurs="1" name="ignoreAffixation" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllDerivativesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="GetAllDerivativesResult" type="tns:SarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analyses" type="tns:ArrayOfSarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DecodeFeatures">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="binarySyntacticFeatures" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DecodeFeaturesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="DecodeFeaturesResult" type="tns:SarfErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="detailedFeatures" type="tns:MorphoSyntacticFeatures" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="MorphoSyntacticFeatures">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="GenderMasculine" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="GenderFeminine" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberSingular" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberDual" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberPluralProper" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberPluralBroken" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NumberPlural" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CeNounNominative" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CeNounAccusative" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CeNounGenetive" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CeIndeclinable" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CeVerbIndicative" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CeVerbSubjunctive" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CeVerbJussive" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Rational" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Irrational" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Intransitive" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Transitive" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Ditransitive" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonFirst" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonSecond" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonThird" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PronounDropped" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HumanSubjectMust" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HumanSubjectMay" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HumanObject1Must" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HumanObject1May" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HumanObject2Must" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HumanObject2May" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbPresent" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbPast" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbFuture" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbImperative" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="GendPlus" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="GendMinus" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Predefined" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbClass1" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbClass2" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbClass3" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbClass4" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbClass5" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="VerbClass6" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Nunated" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DefinedThe" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DefinedGendy" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotDefined" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="QuranicUsage" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ProperName" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NotUsed" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NameUsedAdjective" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NameMay" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NameUsedMore" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AdjectiveUsedMore" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="InfinitiveUsedAdjective" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="LocationTitle" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="HumanTitle" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="OrganizationTitle" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Positive" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Negative" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SemiPositive" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SemiNegative" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="TransitiveWithPrep" type="xs:boolean" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DitransitiveWithPrep" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EncodeFeatures">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="detailedFeatures" type="tns:MorphoSyntacticFeatures" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EncodeFeaturesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="EncodeFeaturesResult" type="tns:SarfErrorCode" />
+        <xs:element minOccurs="1" maxOccurs="1" name="binarySyntacticFeatures" type="xs:long" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestMissingAnalysis">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="word" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestMissingAnalysisResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="SuggestMissingAnalysisResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWrongAnalysis">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="word" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWrongAnalysisResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ReportWrongAnalysisResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportAnalysisSelection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="word" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportAnalysisSelectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ReportAnalysisSelectionResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportAnalysesSelection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="words" type="tns:ArrayOfString" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analyses" type="tns:ArrayOfSarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportAnalysesSelectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ReportAnalysesSelectionResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWrongSynthesizedWord">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="synthesizedWord" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWrongSynthesizedWordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ReportWrongSynthesizedWordResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestMissingDerivative">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="originalAnalysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="derivedAnalysis" type="tns:SarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestMissingDerivativeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="SuggestMissingDerivativeResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWrongDerivative">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="originalAnalysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="derivedAnalysis" type="tns:SarfAnalysis" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWrongDerivativeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ReportWrongDerivativeResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestMissingInflection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inflection" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestMissingInflectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="SuggestMissingInflectionResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWrongInflection">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="analysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inflection" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWrongInflectionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ReportWrongInflectionResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestMissingPluralSingular">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="singularAnalysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="0" maxOccurs="1" name="pluralAnalysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestMissingPluralSingularResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="SuggestMissingPluralSingularResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWrongPluralSingular">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="singularAnalysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="0" maxOccurs="1" name="pluralAnalysis" type="tns:SarfAnalysis" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWrongPluralSingularResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ReportWrongPluralSingularResult" type="tns:SarfErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

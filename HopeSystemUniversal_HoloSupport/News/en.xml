@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Channels>
+  <Cat Name="AllDeaf.com" Image="images/toyor.png" URL="http://www.alldeaf.com/forums/-/index.rss" />
+  <Cat Name="Deaf News Today" Image="images/karamesh.png" URL="http://feeds.feedburner.com/DeafNewsToday" />
+  <Cat Name="The Limping Chicken" Image="images/karamesh.png" URL="http://limpingchicken.com/feed/" />
+</Channels>
+

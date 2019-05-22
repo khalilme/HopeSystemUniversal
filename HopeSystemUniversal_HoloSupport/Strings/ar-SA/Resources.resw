@@ -1,0 +1,495 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutCompny" xml:space="preserve">
+    <value>.NET Developers is a Palestinian company established in 2008, we create powerful software by using .NET languages and techniques.
+
+We hope that we make this word better place, so that we entered the field of people with special needs, we hope that our applications are helpful.</value>
+  </data>
+  <data name="ActivateAllAppFeatures" xml:space="preserve">
+    <value>Activate All App Features buy buying the app, would you like to purchase the full app ?</value>
+  </data>
+  <data name="AppBarButtonText" xml:space="preserve">
+    <value>add</value>
+  </data>
+  <data name="AppBarMenuItemText" xml:space="preserve">
+    <value>Menu Item</value>
+  </data>
+  <data name="ApplicationTitle" xml:space="preserve">
+    <value>Hope  System</value>
+  </data>
+  <data name="AuditoryVerbalTherapy" xml:space="preserve">
+    <value>Auditory Verbal Therapy</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="ClearList" xml:space="preserve">
+    <value>Clear List</value>
+  </data>
+  <data name="ClickListenandSpeak" xml:space="preserve">
+    <value>Click Listen then Speak</value>
+  </data>
+  <data name="comingsoon" xml:space="preserve">
+    <value>Coming Soon: next version</value>
+  </data>
+  <data name="ComingsoonBody" xml:space="preserve">
+    <value>1- Deaf Youtube Channel</value>
+  </data>
+  <data name="ComingsoonBody2" xml:space="preserve">
+    <value>2- Emergency Messages</value>
+  </data>
+  <data name="ComingsoonBody3" xml:space="preserve">
+    <value>3- Convert Text to Full Body Sign  Language [ The Big One! ]</value>
+  </data>
+  <data name="communicationwithdeaf" xml:space="preserve">
+    <value>Communication with Deaf</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>About Company</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>.NET Developers</value>
+  </data>
+  <data name="Computerwordslist" xml:space="preserve">
+    <value>Computer words list</value>
+  </data>
+  <data name="contct" xml:space="preserve">
+    <value>Contact Us</value>
+  </data>
+  <data name="Convert" xml:space="preserve">
+    <value>Convert</value>
+  </data>
+  <data name="Countrieswordslist" xml:space="preserve">
+    <value>Countries words list</value>
+  </data>
+  <data name="DeafCulture" xml:space="preserve">
+    <value>Deaf Culture</value>
+  </data>
+  <data name="DeafEtiquette" xml:space="preserve">
+    <value>Deaf Etiquette</value>
+  </data>
+  <data name="DeafNews" xml:space="preserve">
+    <value>Deaf News</value>
+  </data>
+  <data name="DeafTravelTips" xml:space="preserve">
+    <value>Deaf Travel Tips</value>
+  </data>
+  <data name="DeafVideos" xml:space="preserve">
+    <value>Deaf Videos</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Dictionary" xml:space="preserve">
+    <value>Dictionary</value>
+  </data>
+  <data name="DictionaryLangiageList" xml:space="preserve">
+    <value>eng_Playlist.xml</value>
+  </data>
+  <data name="Done" xml:space="preserve">
+    <value>Done </value>
+  </data>
+  <data name="EmptyList" xml:space="preserve">
+    <value>Your list is empty !. Process stoped</value>
+  </data>
+  <data name="Enlarge" xml:space="preserve">
+    <value>Enlarge</value>
+  </data>
+  <data name="EnlargeMe" xml:space="preserve">
+    <value>Enlarge Me</value>
+  </data>
+  <data name="EnterText" xml:space="preserve">
+    <value>Enter Text</value>
+  </data>
+  <data name="ErrorHead" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorOcurred" xml:space="preserve">
+    <value>Sorry, an error ocurred, we will fix it next time.</value>
+  </data>
+  <data name="ErrorSend" xml:space="preserve">
+    <value>An internal error occures, Could you share it with us ?</value>
+  </data>
+  <data name="FeedBack" xml:space="preserve">
+    <value>Send Feed Back or Suggestion</value>
+  </data>
+  <data name="FeedbackTo" xml:space="preserve">
+    <value>info@developers.ps</value>
+  </data>
+  <data name="FeedBackWord" xml:space="preserve">
+    <value>FeedBack &amp; Suggestions</value>
+  </data>
+  <data name="FillTheField" xml:space="preserve">
+    <value>Please, Fill the field first</value>
+  </data>
+  <data name="FullVersionOnly" xml:space="preserve">
+    <value>This feature available only in the full version. Please purchase the app.</value>
+  </data>
+  <data name="GetStartedHer" xml:space="preserve">
+    <value>Get Started Her</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Help_Contacting" xml:space="preserve">
+    <value>I'm Contacting</value>
+  </data>
+  <data name="Help_Dictionary" xml:space="preserve">
+    <value>Sign Language Dictionary</value>
+  </data>
+  <data name="Help_Enlarge" xml:space="preserve">
+    <value>Enlarge</value>
+  </data>
+  <data name="Help_FeedBack" xml:space="preserve">
+    <value>FeedBack</value>
+  </data>
+  <data name="Help_Finger" xml:space="preserve">
+    <value>Finger Sign Language</value>
+  </data>
+  <data name="howtosend" xml:space="preserve">
+    <value>How to send</value>
+  </data>
+  <data name="HowtoUsehopesystem" xml:space="preserve">
+    <value>How to use hope system</value>
+  </data>
+  <data name="ImContacting" xml:space="preserve">
+    <value>I'm Contacting</value>
+  </data>
+  <data name="InternetConnectionError" xml:space="preserve">
+    <value>Navigation to this page failed, check your internet connection</value>
+  </data>
+  <data name="LastDeafNewsFeed" xml:space="preserve">
+    <value>Last Deaf News Feed</value>
+  </data>
+  <data name="LastestWords" xml:space="preserve">
+    <value>Lastest Words</value>
+  </data>
+  <data name="Latestwords" xml:space="preserve">
+    <value>Latest Words</value>
+  </data>
+  <data name="LearnSignLanguage" xml:space="preserve">
+    <value>Learn Sign Language</value>
+  </data>
+  <data name="LettersList" xml:space="preserve">
+    <value>Letters list</value>
+  </data>
+  <data name="Listen" xml:space="preserve">
+    <value>Listen</value>
+  </data>
+  <data name="MainTitle" xml:space="preserve">
+    <value>Channels</value>
+  </data>
+  <data name="Maps" xml:space="preserve">
+    <value>Maps</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News</value>
+  </data>
+  <data name="NewsRSS" xml:space="preserve">
+    <value>http://limpingchicken.com/feed/</value>
+  </data>
+  <data name="NFCNotSupported" xml:space="preserve">
+    <value>Your phone has no NFC or NFC is disabled</value>
+  </data>
+  <data name="NoInternet" xml:space="preserve">
+    <value>An error has occurred! Please verify your internet connection.</value>
+  </data>
+  <data name="Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
+  <data name="Play" xml:space="preserve">
+    <value>Play</value>
+  </data>
+  <data name="PlaySound" xml:space="preserve">
+    <value>Play Sound</value>
+  </data>
+  <data name="Pleasewaite" xml:space="preserve">
+    <value>Loading... please wait, and try again.</value>
+  </data>
+  <data name="PurchaseFullVersion" xml:space="preserve">
+    <value>Purchase Full Version</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Rate this app, help more deaf</value>
+  </data>
+  <data name="RatingTitle" xml:space="preserve">
+    <value>Rate Hope</value>
+  </data>
+  <data name="Read" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="receiveNFC" xml:space="preserve">
+    <value>receive NFC</value>
+  </data>
+  <data name="RepeatedRead" xml:space="preserve">
+    <value>Repeating</value>
+  </data>
+  <data name="ReplayVideo" xml:space="preserve">
+    <value>Replay Video</value>
+  </data>
+  <data name="ResourceFlowDirection" xml:space="preserve">
+    <value>LeftToRight</value>
+    <comment>Controls the FlowDirection for all elements in the RootFrame. Set to the traditional direction of this resource file's language</comment>
+  </data>
+  <data name="ResourceLanguage" xml:space="preserve">
+    <value>en-US</value>
+    <comment>Controls the Language and ensures that the font for all elements in the RootFrame aligns with the app's language. Set to the language code of this resource file's language.</comment>
+  </data>
+  <data name="SampleProperty" xml:space="preserve">
+    <value>Sample Runtime Property Value</value>
+  </data>
+  <data name="Savemessagesendlater" xml:space="preserve">
+    <value>Save the message now and send it from email later, so that you can attach the video file</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SelectLocation" xml:space="preserve">
+    <value>Select Location</value>
+  </data>
+  <data name="SelectSpeachLang" xml:space="preserve">
+    <value>Please select a speach language in the phone settings</value>
+  </data>
+  <data name="send" xml:space="preserve">
+    <value>Send</value>
+  </data>
+  <data name="SendDone" xml:space="preserve">
+    <value>Send Done</value>
+  </data>
+  <data name="SendNFC" xml:space="preserve">
+    <value>Send NFC</value>
+  </data>
+  <data name="Sendsignlanguagevideo" xml:space="preserve">
+    <value>Send sign language video</value>
+  </data>
+  <data name="SendTube" xml:space="preserve">
+    <value>Send youtube channel</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>Services</value>
+  </data>
+  <data name="Share" xml:space="preserve">
+    <value>Share</value>
+  </data>
+  <data name="Sign2Text" xml:space="preserve">
+    <value>Sign to Text</value>
+  </data>
+  <data name="Sign2TextBeta" xml:space="preserve">
+    <value>This part of hope is under development, our team is working on its algorithm, because we want to get it done well, it will be available in the next version of the application. 
+We hope that by selling this version of the application we get the money needs to continue this part of hope system because it is the biggest new creative idea for deaf, and yes its need enormous efforts.</value>
+  </data>
+  <data name="SignLanguageDictionary" xml:space="preserve">
+    <value>Sign Language Dictionary</value>
+  </data>
+  <data name="SignLanguageDictionaryComputer" xml:space="preserve">
+    <value>Sign Language Dictionary : Computer</value>
+  </data>
+  <data name="SignLanguageGrammar" xml:space="preserve">
+    <value>Sign Grammar</value>
+  </data>
+  <data name="speak" xml:space="preserve">
+    <value>Speak...</value>
+  </data>
+  <data name="speakexample" xml:space="preserve">
+    <value>'How are You ?'</value>
+  </data>
+  <data name="speaknotsure" xml:space="preserve">
+    <value>Not sure what you said! Try again.</value>
+  </data>
+  <data name="SpeakText" xml:space="preserve">
+    <value>Speak Text</value>
+  </data>
+  <data name="Speech2Text" xml:space="preserve">
+    <value>Speech To Text</value>
+  </data>
+  <data name="StopPlay" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="StopRepeating" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Text2Sign" xml:space="preserve">
+    <value>Text To Sign</value>
+  </data>
+  <data name="Text2SignLang" xml:space="preserve">
+    <value>Convert Text To Sign Language</value>
+  </data>
+  <data name="Text2Speech" xml:space="preserve">
+    <value>Text To Speech</value>
+  </data>
+  <data name="Thanks" xml:space="preserve">
+    <value>Thanks</value>
+  </data>
+  <data name="ThanksPage" xml:space="preserve">
+    <value>Project Hope team offers thanks for the team based at the country indicative dictionary, the Hope project team using the materials and information provided by the dictionary
+Also the team offers thanks to Sheikha Mozah for its continuous support for social and humanitarian projects.</value>
+  </data>
+  <data name="TheHistoryofSignLanguage" xml:space="preserve">
+    <value>The History of Sign Language</value>
+  </data>
+  <data name="too" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="use" xml:space="preserve">
+    <value>Getting Started</value>
+  </data>
+  <data name="ValuesandBeliefs" xml:space="preserve">
+    <value>Values and Beliefs</value>
+  </data>
+  <data name="Video" xml:space="preserve">
+    <value>Video</value>
+  </data>
+  <data name="videomessagecontent" xml:space="preserve">
+    <value>1- Video Attatchment, 2- the word title, 3- word country, 4- word city, 5- description, 6- is it in our dictionary right now but it's with a different sign or not</value>
+  </data>
+  <data name="videosendingway" xml:space="preserve">
+    <value>send an Email to Video@hope.ps this email should contains these information : </value>
+  </data>
+  <data name="WatchChannel" xml:space="preserve">
+    <value>Watch Channel</value>
+  </data>
+  <data name="Welcomenotword" xml:space="preserve">
+    <value>Welcome : No Words</value>
+  </data>
+  <data name="whatsignlanguagevideo" xml:space="preserve">
+    <value>If you found that our dictionary has a lost word, you can help other people in the next version, by sending video containing this word and we will but your video in the next version, or even a word in our dictionary has a different sign language in your town, you can send us a video</value>
+  </data>
+  <data name="WordCity" xml:space="preserve">
+    <value>Word City</value>
+  </data>
+  <data name="WordCountry" xml:space="preserve">
+    <value>Word Country</value>
+  </data>
+  <data name="WordTitle" xml:space="preserve">
+    <value>Word Title</value>
+  </data>
+  <data name="yourlanguage" xml:space="preserve">
+    <value>Natural language, or the word language</value>
+  </data>
+  <data name="YouSaid" xml:space="preserve">
+    <value>You Said</value>
+  </data>
+</root>

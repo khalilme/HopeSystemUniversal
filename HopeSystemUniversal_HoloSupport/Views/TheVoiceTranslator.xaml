@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="HopeSystemUniversal_HoloSupport.TheVoiceTranslator"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MicrosoftSpeechLib" FlowDirection="RightToLeft"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
+            <TextBlock HorizontalAlignment="Center" Text="مترجم الإشارة الصوتي" Margin="10" Style="{StaticResource TitleTextBlockStyle}"></TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="StartButton" HorizontalAlignment="Right" Margin="10,0,50,0" Content="بدء القراءة الصوتية"
+             Click="StartButton_Click"/>
+                <Button x:Name="StopButton" HorizontalAlignment="Left" Margin="50,0,0,0" Content="إيقاف" IsEnabled="false"
+                Click="StopButton_Click"/>
+            </StackPanel>
+          
+            <ListView  Name="lstItems"
+                  ItemsSource="{x:Bind ViewModel.Results}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:Result">
+                        <StackPanel>
+                            <TextBlock Text="{x:Bind Recognition}" />
+                            <!--<TextBlock Text="{x:Bind Translation}" FontWeight="Bold" />
+                            <TextBlock Text="{x:Bind Status}" Foreground="Red" />-->
+                        </StackPanel>
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+            </ListView>
+            <TextBlock x:Name="statusText" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="30,0,0,30" TextWrapping="Wrap" Text="ذهب ميسي إلى البحر"/>
+            <!--<Button x:Name="button" Content="Button"/>-->
+            <Button Name="button1" Content="تحويل للغة إشارة" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+
+                <StackPanel>
+                <TextBlock Name="txtCorpus"/>
+                <StackPanel Name="stCorpus">
+
+                </StackPanel>
+                <Image Name="imgPic1" Width="170"/>
+                <Image Name="imgPic2" Width="170"/>
+                <Image Name="imgPic3" Width="170"/>
+            </StackPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
+

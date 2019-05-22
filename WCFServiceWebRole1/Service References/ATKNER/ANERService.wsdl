@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://nlptoolkit.cloudapp.net" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ANERService" targetNamespace="http://nlptoolkit.cloudapp.net" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="HTTPS_IANERService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://nlptoolkit.cloudapp.net/Imports">
+      <xsd:import schemaLocation="https://atks.microsoft.com/Services/ANERService.svc?xsd=xsd0" namespace="http://nlptoolkit.cloudapp.net" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IANERService_GetArabicNamedEntities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetArabicNamedEntities" />
+  </wsdl:message>
+  <wsdl:message name="IANERService_GetArabicNamedEntities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetArabicNamedEntitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IANERService_SuggestMissingNamedEntity_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestMissingNamedEntity" />
+  </wsdl:message>
+  <wsdl:message name="IANERService_SuggestMissingNamedEntity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestMissingNamedEntityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IANERService_ReportWronglyDetectedNamedEntity_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWronglyDetectedNamedEntity" />
+  </wsdl:message>
+  <wsdl:message name="IANERService_ReportWronglyDetectedNamedEntity_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWronglyDetectedNamedEntityResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IANERService">
+    <wsdl:documentation>&lt;summary&gt;
+            Arabic Named Entity Recognizer (ANER) APIs. Contains detection and feedback APIs.
+            &lt;/summary&gt;</wsdl:documentation>
+    <wsdl:operation name="GetArabicNamedEntities">
+      <wsdl:documentation>&lt;summary&gt;
+             Recognizes named entity phrases in the input Arabic text. 
+             See &lt;see cref="T:NERNet.NamedEntity" /&gt; for details about the named entity types that are detected.
+             &lt;/summary&gt;
+             &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+             &lt;param name="arabicText"&gt;Arabic article (or paragraph) to extract named entities from. Maximum length is 1000 characters&lt;/param&gt;
+             &lt;param name="options"&gt;One or more of the &lt;see cref="T:NERNet.NEROption" /&gt; values&lt;/param&gt;
+             &lt;param name="namedEntities"&gt;The output list of named entities found in the input text&lt;/param&gt;
+             &lt;returns&gt;NERErrorCode.Success or one of NER error codes&lt;/returns&gt;
+             &lt;example&gt;
+             This sample shows how to call the GetArabicNamedEntities method and report your feedback.
+             &lt;code lang="C#"&gt;
+            using (ANERServiceClient ANERClient = new ANERServiceClient())
+            {
+                NERErrorCode errorCode;
+                NamedEntity [] namedEntities = null;
+                string arabicText; // initialize it to the Arabic Article you need to extract the named entities from.
+                string appID = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
+                
+                // Setup the preprocessing / detection components that will be used by the Arabic NER.
+                // You may use NEROption.UseSpeller instead of NEROption.UseAutoCorrector in case of
+                // the input text has a high error rate.
+                NEROption NEROptions = NEROption.UseAllComponents | NEROption.UseAutoCorrector; 
+                
+                // Extract and classify named entities
+                errorCode = ANERClient.GetArabicNamedEntities(appId, arabicText, NEROptions, out namedEntities);  
+            
+                if (errorCode == NERErrorCode.Success)
+                {
+                    // Iterate over the extracted named entities.
+                    foreach (NamedEntity namedEntity in namedEntities)
+                    {
+                        NamedEntityType type = (NamedEntityType)namedEntity.NamedEntityType;
+                        
+                        if (type == NamedEntityType.Human)
+                            Console.WriteLine("{0} is {1}", namedEntity.NamedEntityPhrase, "Human");
+                        else if (type == NamedEntityType.Location)
+                            Console.WriteLine("{0} is {1}", namedEntity.NamedEntityPhrase, "Location");
+                        else if (type == NamedEntityType.Organization)
+                            Console.WriteLine("{0} is {1}", namedEntity.NamedEntityPhrase, "Organization");
+            
+                        // User code to consume the extracted named entities ...
+            
+                        // Report a wrong named entity type.
+                        NamedEntityType correctNamedEntityType = NamedEntityType.Human; // Set this to the correct Named Entity type that should have been classified into.
+                        ANERClient.ReportWronglyDetectedNamedEntity(appId, namedEntity, type, correctNamedEntityType);
+                    }
+            
+                    // Suggest a missing named entity
+                    string missingNamedEntityPhrase; // Set this to the missing named entity that should have been detected
+                    NamedEntityType namedEntityType; // Set this to the named entity type of the missing named entity
+                    errorCode = ANERClient.SuggestMissingNamedEntity(appId, missingNamedEntityPhrase, arabicText, namedEntityType);
+            		
+                    if (errorCode != NERErrorCode.Success)
+                    {
+                        Console.WriteLine("Failed with error code" + errorCode);    
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Failed with error code" + errorCode);
+                }
+            }
+             &lt;/code&gt;
+             &lt;/example&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/IANERService/GetArabicNamedEntities" message="tns:IANERService_GetArabicNamedEntities_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/IANERService/GetArabicNamedEntitiesResponse" message="tns:IANERService_GetArabicNamedEntities_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingNamedEntity">
+      <wsdl:documentation>&lt;summary&gt;
+            Report a named entity that should have been detected by the Named Entity Recognizer in a given context. 
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="namedEntity"&gt;The missing named entity phrase&lt;/param&gt;
+            &lt;param name="context"&gt;The Context containing the named entity, probably the sentence in which the named entity was mentioned&lt;/param&gt;
+            &lt;param name="namedEntityType"&gt;The named entity type as it should have been recognized&lt;/param&gt;
+            &lt;returns&gt;NERErrorCode.Success or one of NER error codes&lt;/returns&gt;
+            &lt;example&gt;
+            See &lt;see cref="M:GetArabicNamedEntities()" /&gt; for an example.
+            &lt;/example&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/IANERService/SuggestMissingNamedEntity" message="tns:IANERService_SuggestMissingNamedEntity_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/IANERService/SuggestMissingNamedEntityResponse" message="tns:IANERService_SuggestMissingNamedEntity_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportWronglyDetectedNamedEntity">
+      <wsdl:documentation>&lt;summary&gt;
+            Report a wrong named entity type for a detected named entity in a given context.
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="namedEntity"&gt;The named entity that has been wrongly classified&lt;/param&gt;
+            &lt;param name="context"&gt;The context containing the named entity, probably the sentence in which the named entity was mentioned&lt;/param&gt;
+            &lt;param name="wrongNamedEntityType"&gt;The wrong named entity type as recognized by the Named Entity Recognizer&lt;/param&gt;
+            &lt;param name="correctNamedEntityType"&gt;The correct named entity type as it should have been recognized&lt;/param&gt;
+            &lt;returns&gt;NERErrorCode.Success or one of NER error codes&lt;/returns&gt;
+            &lt;example&gt;
+            See &lt;see cref="M:GetArabicNamedEntities()" /&gt; for an example.
+            &lt;/example&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/IANERService/ReportWronglyDetectedNamedEntity" message="tns:IANERService_ReportWronglyDetectedNamedEntity_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/IANERService/ReportWronglyDetectedNamedEntityResponse" message="tns:IANERService_ReportWronglyDetectedNamedEntity_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HTTP_IANERService" type="tns:IANERService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetArabicNamedEntities">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IANERService/GetArabicNamedEntities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingNamedEntity">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IANERService/SuggestMissingNamedEntity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWronglyDetectedNamedEntity">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IANERService/ReportWronglyDetectedNamedEntity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HTTPS_IANERService" type="tns:IANERService">
+    <wsp:PolicyReference URI="#HTTPS_IANERService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetArabicNamedEntities">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IANERService/GetArabicNamedEntities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingNamedEntity">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IANERService/SuggestMissingNamedEntity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWronglyDetectedNamedEntity">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IANERService/ReportWronglyDetectedNamedEntity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ANERService">
+    <wsdl:port name="HTTP_IANERService" binding="tns:HTTP_IANERService">
+      <soap:address location="http://rd00155d4a40ec/Services/ANERService.svc" />
+    </wsdl:port>
+    <wsdl:port name="HTTPS_IANERService" binding="tns:HTTPS_IANERService">
+      <soap:address location="https://atks.microsoft.com/Services/ANERService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://nlptoolkit.cloudapp.net" elementFormDefault="qualified" targetNamespace="http://nlptoolkit.cloudapp.net" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Parse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inText" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ParseResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ParseResult" type="tns:ParserErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="parseTree" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="score" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="ParserErrorCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="ErrorNonInitialized" />
+      <xs:enumeration value="ErrorAccessDenied" />
+      <xs:enumeration value="ErrorQuotaExceeded" />
+      <xs:enumeration value="ErrorAuthentication" />
+      <xs:enumeration value="ErrorMaxLengthExceeded" />
+      <xs:enumeration value="ErrorUnknown" />
+      <xs:enumeration value="ErrorInvalidParse" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="SuggestParseTree">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inText" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="alternateParseTree" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestParseTreeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="SuggestParseTreeResult" type="tns:ParserErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

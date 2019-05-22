@@ -1,0 +1,41 @@
+﻿<Page
+    x:Class="HopeUWP.Pages.NewsViewerDirectWeb"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:UI="using:Microsoft.Advertising.WinRT.UI"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:HopeUWP.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:myControls="using:HopeUWP.UserControls"
+    FlowDirection="RightToLeft"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="أخبار الصم" />
+        </StackPanel>
+
+
+        <ScrollViewer Grid.Row="1" Padding="{x:Bind Frame.Padding, Mode=OneWay}">
+            <Grid>
+                <WebView
+                    Name="DisplayWebView"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    NavigationCompleted="DisplayWebView_NavigationCompleted" />
+                <ProgressRing
+                    Name="LoadingProcessProgressRing"
+                    Width="50"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="Transparent" />
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

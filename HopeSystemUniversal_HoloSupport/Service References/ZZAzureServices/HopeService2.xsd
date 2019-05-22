@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://nlptoolkit.cloudapp.net" elementFormDefault="qualified" targetNamespace="http://nlptoolkit.cloudapp.net" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfNamedEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NamedEntity" nillable="true" type="tns:NamedEntity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNamedEntity" nillable="true" type="tns:ArrayOfNamedEntity" />
+  <xs:complexType name="NamedEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="NamedEntityPhrase" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="StartPosition" type="xs:unsignedInt" />
+      <xs:element name="Length" type="xs:unsignedInt" />
+      <xs:element name="Confidence" type="xs:double" />
+      <xs:element name="NamedEntityType" type="tns:NamedEntityType" />
+      <xs:element minOccurs="0" name="NamedEntityWords" nillable="true" type="tns:ArrayOfWord">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="SentenceId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NamedEntity" nillable="true" type="tns:NamedEntity" />
+  <xs:simpleType name="NamedEntityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Human" />
+      <xs:enumeration value="Location" />
+      <xs:enumeration value="Organization" />
+      <xs:enumeration value="NotNamedEntity" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="NamedEntityType" nillable="true" type="tns:NamedEntityType" />
+  <xs:complexType name="ArrayOfWord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Word" nillable="true" type="tns:Word" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWord" nillable="true" type="tns:ArrayOfWord" />
+  <xs:complexType name="Word">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="WordString" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="NormalizedWord" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="Flags" nillable="true" type="tns:FlagCollection">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Position" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Word" nillable="true" type="tns:Word" />
+  <xs:complexType name="FlagCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfFlagInfo">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FlagCollection" nillable="true" type="tns:FlagCollection" />
+  <xs:complexType name="ArrayOfFlagInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FlagInfo" nillable="true" type="tns:FlagInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfFlagInfo" nillable="true" type="tns:ArrayOfFlagInfo" />
+  <xs:complexType name="FlagInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Flag" nillable="true" type="xs:string">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="RuleIndex" type="xs:int" />
+      <xs:element name="Confidence" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FlagInfo" nillable="true" type="tns:FlagInfo" />
+</xs:schema>

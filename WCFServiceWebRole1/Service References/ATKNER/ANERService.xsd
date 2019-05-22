@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://nlptoolkit.cloudapp.net" elementFormDefault="qualified" targetNamespace="http://nlptoolkit.cloudapp.net" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="GetArabicNamedEntities">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="arabicText" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="options" type="tns:NEROption" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="NEROption">
+    <xs:list>
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="UseAutoCorrector" />
+          <xs:enumeration value="UseSpeller" />
+          <xs:enumeration value="UseRules" />
+          <xs:enumeration value="UseGazetteers" />
+          <xs:enumeration value="UseStatisticalSequenceLabeling" />
+          <xs:enumeration value="UseSubstringMatching" />
+          <xs:enumeration value="UseVoting" />
+          <xs:enumeration value="UseAllComponents" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:list>
+  </xs:simpleType>
+  <xs:element name="GetArabicNamedEntitiesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="GetArabicNamedEntitiesResult" type="tns:NERErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="namedEntities" type="tns:ArrayOfNamedEntity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="NERErrorCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="ErrorNonInitialized" />
+      <xs:enumeration value="ErrorAccessDenied" />
+      <xs:enumeration value="ErrorQuotaExceeded" />
+      <xs:enumeration value="ErrorAuthentication" />
+      <xs:enumeration value="ErrorMaxLengthExceeded" />
+      <xs:enumeration value="ErrorInvalidNEROption" />
+      <xs:enumeration value="ErrorInvalidLanguage" />
+      <xs:enumeration value="ErrorUnknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfNamedEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NamedEntity" nillable="true" type="tns:NamedEntity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NamedEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="NamedEntityPhrase" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="StartPosition" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Length" type="xs:unsignedInt" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Confidence" type="xs:double" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NamedEntityType" type="tns:NamedEntityType" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NamedEntityWords" type="tns:ArrayOfWord" />
+      <xs:element minOccurs="1" maxOccurs="1" name="SentenceId" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="NamedEntityType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Human" />
+      <xs:enumeration value="Location" />
+      <xs:enumeration value="Organization" />
+      <xs:enumeration value="NotNamedEntity" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfWord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Word" nillable="true" type="tns:Word" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Word">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="WordString" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="NormalizedWord" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Flags" type="tns:FlagCollection" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Position" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FlagCollection">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Items" type="tns:ArrayOfFlagInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfFlagInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="FlagInfo" nillable="true" type="tns:FlagInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FlagInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Flag" type="xs:string" />
+      <xs:element minOccurs="1" maxOccurs="1" name="RuleIndex" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Confidence" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SuggestMissingNamedEntity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="namedEntity" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="namedEntityType" type="tns:NamedEntityType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestMissingNamedEntityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="SuggestMissingNamedEntityResult" type="tns:NERErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWronglyDetectedNamedEntity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="namedEntity" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="context" type="xs:string" />
+        <xs:element minOccurs="1" maxOccurs="1" name="wrongNamedEntityType" type="tns:NamedEntityType" />
+        <xs:element minOccurs="1" maxOccurs="1" name="correctNamedEntityType" type="tns:NamedEntityType" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReportWronglyDetectedNamedEntityResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ReportWronglyDetectedNamedEntityResult" type="tns:NERErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

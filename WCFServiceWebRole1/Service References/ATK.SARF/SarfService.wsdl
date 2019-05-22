@@ -1,0 +1,949 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://nlptoolkit.cloudapp.net" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SarfService" targetNamespace="http://nlptoolkit.cloudapp.net" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="HTTPS_ISarfService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://nlptoolkit.cloudapp.net/Imports">
+      <xsd:import schemaLocation="https://atks.microsoft.com/Services/SarfService.svc?xsd=xsd0" namespace="http://nlptoolkit.cloudapp.net" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISarfService_AnalyzeToken_InputMessage">
+    <wsdl:part name="parameters" element="tns:AnalyzeToken" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_AnalyzeToken_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AnalyzeTokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_AnalyzeTokensArray_InputMessage">
+    <wsdl:part name="parameters" element="tns:AnalyzeTokensArray" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_AnalyzeTokensArray_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AnalyzeTokensArrayResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SynthesizeWord_InputMessage">
+    <wsdl:part name="parameters" element="tns:SynthesizeWord" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SynthesizeWord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SynthesizeWordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SynthesizeWordsArray_InputMessage">
+    <wsdl:part name="parameters" element="tns:SynthesizeWordsArray" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SynthesizeWordsArray_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SynthesizeWordsArrayResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetPlural_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPlural" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetPlural_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPluralResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetSingular_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingular" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetSingular_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSingularResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetInflections_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInflections" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetInflections_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInflectionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetInflectionsEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInflectionsEx" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetInflectionsEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInflectionsExResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetDerivatives_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDerivatives" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetDerivatives_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDerivativesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetAllDerivatives_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDerivatives" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_GetAllDerivatives_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllDerivativesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_DecodeFeatures_InputMessage">
+    <wsdl:part name="parameters" element="tns:DecodeFeatures" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_DecodeFeatures_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DecodeFeaturesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_EncodeFeatures_InputMessage">
+    <wsdl:part name="parameters" element="tns:EncodeFeatures" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_EncodeFeatures_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EncodeFeaturesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SuggestMissingAnalysis_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestMissingAnalysis" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SuggestMissingAnalysis_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestMissingAnalysisResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportWrongAnalysis_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWrongAnalysis" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportWrongAnalysis_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWrongAnalysisResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportAnalysisSelection_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportAnalysisSelection" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportAnalysisSelection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportAnalysisSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportAnalysesSelection_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportAnalysesSelection" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportAnalysesSelection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportAnalysesSelectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportWrongSynthesizedWord_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWrongSynthesizedWord" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportWrongSynthesizedWord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWrongSynthesizedWordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SuggestMissingDerivative_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestMissingDerivative" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SuggestMissingDerivative_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestMissingDerivativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportWrongDerivative_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWrongDerivative" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportWrongDerivative_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWrongDerivativeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SuggestMissingInflection_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestMissingInflection" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SuggestMissingInflection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestMissingInflectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportWrongInflection_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWrongInflection" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportWrongInflection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWrongInflectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SuggestMissingPluralSingular_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestMissingPluralSingular" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_SuggestMissingPluralSingular_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestMissingPluralSingularResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportWrongPluralSingular_InputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWrongPluralSingular" />
+  </wsdl:message>
+  <wsdl:message name="ISarfService_ReportWrongPluralSingular_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ReportWrongPluralSingularResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISarfService">
+    <wsdl:documentation>&lt;summary&gt;
+            Sarf APIs. Contains morphological analysis and feedback APIs.
+            &lt;/summary&gt;</wsdl:documentation>
+    <wsdl:operation name="AnalyzeToken">
+      <wsdl:documentation>&lt;summary&gt;
+             Analyzes a given word and suggests all possible analyses of the word.
+             If input word is fully or partially diacritized, all analyses that don’t match the input diacritics will be filtered out.
+             &lt;/summary&gt;
+             &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+             &lt;param name="word"&gt;Unicode word to be analyzed&lt;/param&gt;
+             &lt;param name="lingMode"&gt;One of the &lt;see cref="T:Sarf.LinguisticMode" /&gt; enumerated values&lt;/param&gt;
+             &lt;param name="analyses"&gt;All possible analyses of the word&lt;/param&gt;
+             &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;
+             &lt;example&gt;
+             This sample shows how to call the AnalyzeToken method and report your feedback.
+             &lt;code lang="C#"&gt;
+             using (SarfServiceClient SarfClient = new SarfServiceClient())
+             {
+                 string AppID = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
+                 SarfAnalysis[] AllAnalyses = null;
+            
+                 // Split an Arabic line of text into tokens
+                 string[] Tokens = textArabicLine.Text.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            
+                 foreach (string Token in Tokens)
+                 {
+                     // Analyze each token using Sarf
+                     SarfErrorCode RetCode = SarfClient.AnalyzeToken(AppID, Token, LinguisticMode.Classical, out AllAnalyses);
+            
+                     if (RetCode == SarfErrorCode.Success)
+                     {
+                         foreach (SarfAnalysis an in AllAnalyses)
+                         {
+                             // Display the analysis
+                             listResults.Items.Add(an.DiacToken + ", " + an.Pos);
+                             
+                             // Some processing or user input ...
+            
+                             // If the analysis is wrong, it is recommended to report it for enhancing Sarf performance
+                             SarfClient.ReportWrongAnalysis(AppID, Token, textArabicLine.Text, an);
+                         }
+                         
+                         // Some processing or user input ...
+            
+                         // If the analysis is wrong, it is recommended to report it
+                         // by forming a new analysis or modifying an existing analysis
+                         SarfAnalysis newAnalysis = new SarfAnalysis();
+                         // Fill as much fields as available
+                         newAnalysis.DiacToken = SomeDiacritizedWord;
+                         newAnalysis.Stem = WordStem;
+                         newAnalysis.Root = WordRoot;
+                         newAnalysis.Pattern = WordPattern;
+                         newAnalysis.Pos = WordPartOfSpeech;
+                         // Suggest the new analysis
+                         SarfClient.SuggestMissingAnalysis(AppID, Token, textArabicLine.Text, newAnalysis);
+                     }
+                     else
+                     {
+                         MessageBox.Show("Failed with error code " + RetCode.ToString());
+                     }
+                 }
+             }
+             &lt;/code&gt;
+             &lt;/example&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/AnalyzeToken" message="tns:ISarfService_AnalyzeToken_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/AnalyzeTokenResponse" message="tns:ISarfService_AnalyzeToken_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AnalyzeTokensArray">
+      <wsdl:documentation>&lt;summary&gt;
+            Analyzes a given array of words and suggests all possible analyses of each word.
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="words"&gt;Array of unicode words to be analyzed. Maximum array length is 30 tokens.&lt;/param&gt;
+            &lt;param name="lingMode"&gt;One of the &lt;see cref="T:Sarf.LinguisticMode" /&gt; enumerated values&lt;/param&gt;
+            &lt;param name="analyses"&gt;All possible analyses of each word&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/AnalyzeTokensArray" message="tns:ISarfService_AnalyzeTokensArray_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/AnalyzeTokensArrayResponse" message="tns:ISarfService_AnalyzeTokensArray_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SynthesizeWord">
+      <wsdl:documentation>&lt;summary&gt;
+            Synthesizes the final form word given the constituents of a word (prefix/suffix/stem) through the analysis structure
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="inAnalysis"&gt;Analysis for which final word need to be determined&lt;/param&gt;
+            &lt;param name="lingMode"&gt;One of the &lt;see cref="T:Sarf.LinguisticMode" /&gt; enumerated values&lt;/param&gt;
+            &lt;param name="outAnalyses"&gt;Modified analysis that contains the final form word&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SynthesizeWord" message="tns:ISarfService_SynthesizeWord_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SynthesizeWordResponse" message="tns:ISarfService_SynthesizeWord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SynthesizeWordsArray">
+      <wsdl:documentation>&lt;summary&gt;
+            Synthesizes the final form words array given the constituents of a word (prefix/suffix/stem) through the analysis structure array
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="inAnalyses"&gt;Analysis array for which final words need to be determined. Maximum array length is 30 words.&lt;/param&gt;
+            &lt;param name="lingMode"&gt;One of the &lt;see cref="T:Sarf.LinguisticMode" /&gt; enumerated values&lt;/param&gt;
+            &lt;param name="outAnalyses"&gt;Modified analysis array that contains the final form words&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SynthesizeWordsArray" message="tns:ISarfService_SynthesizeWordsArray_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SynthesizeWordsArrayResponse" message="tns:ISarfService_SynthesizeWordsArray_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPlural">
+      <wsdl:documentation>&lt;summary&gt;
+            Transforms between singular and plural forms
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="analysis"&gt;Singular analysis for which plural to be determined&lt;/param&gt;
+            &lt;param name="ignoreAffixation"&gt;If true, work on stem and ignore attached affixes&lt;/param&gt;
+            &lt;param name="analyses"&gt;Plural analysis&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetPlural" message="tns:ISarfService_GetPlural_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetPluralResponse" message="tns:ISarfService_GetPlural_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSingular">
+      <wsdl:documentation>&lt;summary&gt;
+            Transforms between plural and singular forms
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="analysis"&gt;Plural analysis for which singular to be determined&lt;/param&gt;
+            &lt;param name="ignoreAffixation"&gt;If true, work on stem and ignore attached affixes&lt;/param&gt;
+            &lt;param name="analyses"&gt;Singular analysis&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetSingular" message="tns:ISarfService_GetSingular_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetSingularResponse" message="tns:ISarfService_GetSingular_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInflections">
+      <wsdl:documentation>&lt;summary&gt;
+            Retrieves all possible inflections of a given word with a hard limit of 500 inflections per call.
+            Use GetInflectionsEx to retrieve all available inflections. 
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="analysis"&gt;Analysis for which all possible inflections are to be determined&lt;/param&gt;
+            &lt;param name="lingMode"&gt;One of the &lt;see cref="T:Sarf.LinguisticMode" /&gt; enumerated values&lt;/param&gt;
+            &lt;param name="diacritized"&gt;If true, returns the diacritized inflected forms, else returns undiacritized forms&lt;/param&gt;
+            &lt;param name="inflections"&gt;Returned inflections array&lt;/param&gt;
+            &lt;param name="totalInflections"&gt;The total number of available inflections&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetInflections" message="tns:ISarfService_GetInflections_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetInflectionsResponse" message="tns:ISarfService_GetInflections_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInflectionsEx">
+      <wsdl:documentation>&lt;summary&gt;
+            Retrieves all possible inflections of a given word with a hard limit of 500 inflections per call starting from a given index
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="analysis"&gt;Analysis for which all possible inflections are to be determined&lt;/param&gt;
+            &lt;param name="lingMode"&gt;One of the &lt;see cref="T:Sarf.LinguisticMode" /&gt; enumerated values&lt;/param&gt;
+            &lt;param name="diacritized"&gt;If true, returns the diacritized inflected forms, else returns undiacritized forms&lt;/param&gt;
+            &lt;param name="maxInflections"&gt;Maximum number of inflections to be returned&lt;/param&gt;
+            &lt;param name="startIndex"&gt;Start index of the inflections to return&lt;/param&gt;
+            &lt;param name="inflections"&gt;Returned inflections array&lt;/param&gt;
+            &lt;param name="totalInflections"&gt;The total number of available inflections&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetInflectionsEx" message="tns:ISarfService_GetInflectionsEx_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetInflectionsExResponse" message="tns:ISarfService_GetInflectionsEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDerivatives">
+      <wsdl:documentation>&lt;summary&gt;
+            Retrieves a specific derivative for a given analysis, by specifying the target part of speech
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="analysis"&gt;Analysis for which derivatives need to be determined&lt;/param&gt;
+            &lt;param name="pos"&gt;Target part of speech&lt;/param&gt;
+            &lt;param name="ignoreAffixation"&gt;If true, work on stem and ignore attached affixes&lt;/param&gt;
+            &lt;param name="analyses"&gt;Derivative analyses&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetDerivatives" message="tns:ISarfService_GetDerivatives_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetDerivativesResponse" message="tns:ISarfService_GetDerivatives_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDerivatives">
+      <wsdl:documentation>&lt;summary&gt;
+            Retrieves all possible derivatives of a given analysis
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="analysis"&gt;Analysis for which derivatives need to be determine&lt;/param&gt;
+            &lt;param name="ignoreAffixation"&gt;If true, work on stem and ignore attached affixes&lt;/param&gt;
+            &lt;param name="analyses"&gt;Derivative analyses&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetAllDerivatives" message="tns:ISarfService_GetAllDerivatives_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/GetAllDerivativesResponse" message="tns:ISarfService_GetAllDerivatives_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DecodeFeatures">
+      <wsdl:documentation>&lt;summary&gt;
+            Decode syntactic features binary code to a SyntacticFeatures object
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="binarySyntacticFeatures"&gt;Morphological syntactic features binary code found in &lt;see cref="F:Sarf.SarfAnalysis.MorphoSyntacticFeatures" /&gt;&lt;/param&gt;
+            &lt;param name="detailedFeatures"&gt;Returned SyntacticFeatures object&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;
+            &lt;seealso cref="M:EncodeFeatures()" /&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/DecodeFeatures" message="tns:ISarfService_DecodeFeatures_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/DecodeFeaturesResponse" message="tns:ISarfService_DecodeFeatures_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EncodeFeatures">
+      <wsdl:documentation>&lt;summary&gt;
+            Encode SyntacticFeatures object into a syntactic features binary code
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="detailedFeatures"&gt;SyntacticFeatures object to encode&lt;/param&gt;
+            &lt;param name="binarySyntacticFeatures"&gt;Returned morphological syntactic features binary code&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;
+            &lt;seealso cref="M:DecodeFeatures()" /&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/EncodeFeatures" message="tns:ISarfService_EncodeFeatures_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/EncodeFeaturesResponse" message="tns:ISarfService_EncodeFeatures_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingAnalysis">
+      <wsdl:documentation>&lt;summary&gt;
+            Suggests that a new valid analysis that should be added to the analyses returned for a given word 
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="word"&gt;The word for which to suggest the new analysis&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;param name="analysis"&gt;The valid analysis that is missing&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;
+            &lt;example&gt;
+            See &lt;see cref="M:AnalyzeToken()" /&gt; for an example.
+            &lt;/example&gt;
+            &lt;seealso cref="M:AnalyzeToken()" /&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingAnalysis" message="tns:ISarfService_SuggestMissingAnalysis_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingAnalysisResponse" message="tns:ISarfService_SuggestMissingAnalysis_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongAnalysis">
+      <wsdl:documentation>&lt;summary&gt;
+            Reports that a wrong analysis is returned for a given word 
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="word"&gt;The word for which to report the wrong analysis&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;param name="analysis"&gt;The wrong analysis that was returned&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;
+            &lt;example&gt;
+            See &lt;see cref="M:AnalyzeToken()" /&gt; for an example.
+            &lt;/example&gt;
+            &lt;seealso cref="M:AnalyzeToken()" /&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongAnalysis" message="tns:ISarfService_ReportWrongAnalysis_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongAnalysisResponse" message="tns:ISarfService_ReportWrongAnalysis_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportAnalysisSelection">
+      <wsdl:documentation>&lt;summary&gt;
+            Reports that this analysis was selected as a result of later processing after calling &lt;see cref="M:AnalyzeToken()" /&gt; or &lt;see cref="M:AnalyzeTokensArray()" /&gt;
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="word"&gt;The word for which to report the selected analysis&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;param name="analysis"&gt;The selected word analysis&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportAnalysisSelection" message="tns:ISarfService_ReportAnalysisSelection_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportAnalysisSelectionResponse" message="tns:ISarfService_ReportAnalysisSelection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportAnalysesSelection">
+      <wsdl:documentation>&lt;summary&gt;
+            Reports that these analyses were selected as a result of later processing after calling &lt;see cref="M:AnalyzeToken()" /&gt; or &lt;see cref="M:AnalyzeTokensArray()" /&gt;
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="words"&gt;The words for which to report the selected analyses. Maximum array length is 30 words.&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;param name="analyses"&gt;The selected words analyses&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportAnalysesSelection" message="tns:ISarfService_ReportAnalysesSelection_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportAnalysesSelectionResponse" message="tns:ISarfService_ReportAnalysesSelection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongSynthesizedWord">
+      <wsdl:documentation>&lt;summary&gt;
+            Reports that a wrong word was synthesized for a given analysis
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="analysis"&gt;The analysis by which the word is synthesized&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;param name="synthesizedWord"&gt;The wrongly synthesized word that was returned for the given analysis&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongSynthesizedWord" message="tns:ISarfService_ReportWrongSynthesizedWord_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongSynthesizedWordResponse" message="tns:ISarfService_ReportWrongSynthesizedWord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingDerivative">
+      <wsdl:documentation>&lt;summary&gt;
+            Suggests a new valid analysis that should be a derivative for a given input analysis
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="originalAnalysis"&gt;The input analysis for which the new alaysis should be a derivative&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;param name="derivedAnalysis"&gt;The derivative analysis that should be added&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingDerivative" message="tns:ISarfService_SuggestMissingDerivative_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingDerivativeResponse" message="tns:ISarfService_SuggestMissingDerivative_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongDerivative">
+      <wsdl:documentation>&lt;summary&gt;
+            Reports that a wrong derivative analysis was returned for a given input analysis
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="originalAnalysis"&gt;The input analysis for which the wrong derivative was returned&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;param name="derivedAnalysis"&gt;The wrong derivative analysis that was returned&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongDerivative" message="tns:ISarfService_ReportWrongDerivative_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongDerivativeResponse" message="tns:ISarfService_ReportWrongDerivative_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingInflection">
+      <wsdl:documentation>&lt;summary&gt;
+            Suggests a new valid inflection for a given analysis
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="analysis"&gt;&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;param name="inflection"&gt;The inflection that should be added&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingInflection" message="tns:ISarfService_SuggestMissingInflection_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingInflectionResponse" message="tns:ISarfService_SuggestMissingInflection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongInflection">
+      <wsdl:documentation>&lt;summary&gt;
+            Reports that a wrong inflection was returned for a given analysis
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="analysis"&gt;The analysis for which the wrong inflection was returned&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;param name="inflection"&gt;The wrong inflection that was returned&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongInflection" message="tns:ISarfService_ReportWrongInflection_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongInflectionResponse" message="tns:ISarfService_ReportWrongInflection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingPluralSingular">
+      <wsdl:documentation>&lt;summary&gt;
+            Suggests the corerct plural/singulare form for a given singular/plural form
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="singularAnalysis"&gt;The singular form&lt;/param&gt;
+            &lt;param name="pluralAnalysis"&gt;The plural form&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingPluralSingular" message="tns:ISarfService_SuggestMissingPluralSingular_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingPluralSingularResponse" message="tns:ISarfService_SuggestMissingPluralSingular_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongPluralSingular">
+      <wsdl:documentation>&lt;summary&gt;
+            Reports that the returned plural/singulare form for a given singular/plural form is wrong
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="singularAnalysis"&gt;The singular form&lt;/param&gt;
+            &lt;param name="pluralAnalysis"&gt;The plural form&lt;/param&gt;
+            &lt;param name="context"&gt;The text context in which the word appeared, can be one line of text or a 5 to 9 words window. Maximum length is 250 characters.&lt;/param&gt;
+            &lt;returns&gt;SarfErrorCode.Success or one of Sarf error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongPluralSingular" message="tns:ISarfService_ReportWrongPluralSingular_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongPluralSingularResponse" message="tns:ISarfService_ReportWrongPluralSingular_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HTTP_ISarfService" type="tns:ISarfService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AnalyzeToken">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/AnalyzeToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AnalyzeTokensArray">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/AnalyzeTokensArray" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SynthesizeWord">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SynthesizeWord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SynthesizeWordsArray">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SynthesizeWordsArray" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlural">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetPlural" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingular">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetSingular" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInflections">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetInflections" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInflectionsEx">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetInflectionsEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDerivatives">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetDerivatives" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDerivatives">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetAllDerivatives" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecodeFeatures">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/DecodeFeatures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncodeFeatures">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/EncodeFeatures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingAnalysis">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingAnalysis" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongAnalysis">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongAnalysis" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportAnalysisSelection">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportAnalysisSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportAnalysesSelection">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportAnalysesSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongSynthesizedWord">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongSynthesizedWord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingDerivative">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingDerivative" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongDerivative">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongDerivative" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingInflection">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingInflection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongInflection">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongInflection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingPluralSingular">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingPluralSingular" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongPluralSingular">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongPluralSingular" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HTTPS_ISarfService" type="tns:ISarfService">
+    <wsp:PolicyReference URI="#HTTPS_ISarfService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AnalyzeToken">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/AnalyzeToken" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AnalyzeTokensArray">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/AnalyzeTokensArray" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SynthesizeWord">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SynthesizeWord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SynthesizeWordsArray">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SynthesizeWordsArray" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPlural">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetPlural" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSingular">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetSingular" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInflections">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetInflections" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInflectionsEx">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetInflectionsEx" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDerivatives">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetDerivatives" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllDerivatives">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/GetAllDerivatives" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecodeFeatures">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/DecodeFeatures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncodeFeatures">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/EncodeFeatures" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingAnalysis">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingAnalysis" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongAnalysis">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongAnalysis" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportAnalysisSelection">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportAnalysisSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportAnalysesSelection">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportAnalysesSelection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongSynthesizedWord">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongSynthesizedWord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingDerivative">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingDerivative" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongDerivative">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongDerivative" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingInflection">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingInflection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongInflection">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongInflection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestMissingPluralSingular">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/SuggestMissingPluralSingular" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ReportWrongPluralSingular">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/ISarfService/ReportWrongPluralSingular" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SarfService">
+    <wsdl:port name="HTTP_ISarfService" binding="tns:HTTP_ISarfService">
+      <soap:address location="http://rd00155d4a40ec/Services/SarfService.svc" />
+    </wsdl:port>
+    <wsdl:port name="HTTPS_ISarfService" binding="tns:HTTPS_ISarfService">
+      <soap:address location="https://atks.microsoft.com/Services/SarfService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

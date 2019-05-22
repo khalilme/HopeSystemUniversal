@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Channels>
+  <!--<Cat Name="Deaf News Today" Image="images/karamesh.png" URL="http://www.aldeaf.com/external.php?do=rss&type=newcontent&sectionid=1&days=120&count=10" />-->
+  <Cat Name="AllDeaf.com" Image="images/toyor.png" URL="http://www.alldeaf.com/external.php?type=RSS2" />
+</Channels>
+

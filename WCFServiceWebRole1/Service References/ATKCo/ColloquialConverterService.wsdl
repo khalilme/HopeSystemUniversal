@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://nlptoolkit.cloudapp.net" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ColloquialConverterService" targetNamespace="http://nlptoolkit.cloudapp.net" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="HTTPS_IColloquialConverterService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false" />
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://nlptoolkit.cloudapp.net/Imports">
+      <xsd:import schemaLocation="https://atks.microsoft.com/Services/ColloquialConverterService.svc?xsd=xsd0" namespace="http://nlptoolkit.cloudapp.net" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IColloquialConverterService_ConvertText_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertText" />
+  </wsdl:message>
+  <wsdl:message name="IColloquialConverterService_ConvertText_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertTextResponse" />
+  </wsdl:message>
+  <wsdl:message name="IColloquialConverterService_ConvertTextWithDetails_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertTextWithDetails" />
+  </wsdl:message>
+  <wsdl:message name="IColloquialConverterService_ConvertTextWithDetails_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertTextWithDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IColloquialConverterService_ConvertWord_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertWord" />
+  </wsdl:message>
+  <wsdl:message name="IColloquialConverterService_ConvertWord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConvertWordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IColloquialConverterService_SuggestConversion_InputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestConversion" />
+  </wsdl:message>
+  <wsdl:message name="IColloquialConverterService_SuggestConversion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SuggestConversionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IColloquialConverterService">
+    <wsdl:documentation>&lt;summary&gt;
+            Colloquial Converter API
+            &lt;/summary&gt;</wsdl:documentation>
+    <wsdl:operation name="ConvertText">
+      <wsdl:documentation>&lt;summary&gt;
+             Translates Egyptian colloquial text into a modern standard Arabic (MSA) text
+             &lt;/summary&gt;
+             &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+             &lt;param name="inText"&gt;The input text to be translated. Maximum length is 250 characters&lt;/param&gt;
+             &lt;param name="outText"&gt;The translated MSA text&lt;/param&gt;
+             &lt;returns&gt;&lt;c&gt;ColloquialConverterErrorCode.Success&lt;/c&gt; or one of the Colloquial Converter error codes&lt;/returns&gt;
+             &lt;example&gt;
+             This sample shows how to call the ConvertText method and report your feedback
+             &lt;code lang="C#"&gt;
+             using (ColloquialConverterServiceClient converterClient = new ColloquialConverterServiceClient())
+             {
+                string AppID = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX";
+                string msaText = null;
+            
+                // Translates the input colloquial text to modern standard Arabic (MSA) text
+                ColloquialConverterErrorCode RetCode = converterClient.ConvertText(AppID, textColloquialLine.Text, out msaText);
+            
+                if (RetCode == ColloquialConverterErrorCode.Success)
+                {
+                    // Display the translated text
+                    textTranslatedLine.Text = msaText;
+            
+                    // Some processing or user input ...
+            
+                    // If there is a better translation, it is recommended to suggest it
+                    converterClient.SuggestConversion(AppID, textColloquialLine.Text, suggestedTranslation);
+                }
+                else
+                {
+                    MessageBox.Show("Failed with error code " + RetCode.ToString());
+                }
+             }
+             &lt;/code&gt;
+             &lt;/example&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertText" message="tns:IColloquialConverterService_ConvertText_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertTextResponse" message="tns:IColloquialConverterService_ConvertText_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertTextWithDetails">
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertTextWithDetails" message="tns:IColloquialConverterService_ConvertTextWithDetails_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertTextWithDetailsResponse" message="tns:IColloquialConverterService_ConvertTextWithDetails_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ConvertWord">
+      <wsdl:documentation>&lt;summary&gt;
+            Generates a list of candidate MSA translations for a single colloquial word
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="word"&gt;The input colloquial word&lt;/param&gt;
+            &lt;param name="translations"&gt;The output candidate translations&lt;/param&gt;
+            &lt;returns&gt;&lt;c&gt;ColloquialConverterErrorCode.Success&lt;/c&gt; or one of the Colloquial Converter error codes&lt;/returns&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertWord" message="tns:IColloquialConverterService_ConvertWord_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertWordResponse" message="tns:IColloquialConverterService_ConvertWord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SuggestConversion">
+      <wsdl:documentation>&lt;summary&gt;
+            Suggests a better translation for a previously translated colloquial text
+            &lt;/summary&gt;
+            &lt;param name="appId"&gt;Your Application Guid&lt;/param&gt;
+            &lt;param name="inText"&gt;The wrongly translated text&lt;/param&gt;
+            &lt;param name="suggestedText"&gt;The suggested translated text&lt;/param&gt;
+            &lt;returns&gt;&lt;c&gt;ColloquialConverterErrorCode.Success&lt;/c&gt; or one of the Colloquial Converter error codes&lt;/returns&gt;
+            &lt;example&gt;
+            See &lt;see cref="M:ConvertText()" /&gt; for an example
+            &lt;/example&gt;</wsdl:documentation>
+      <wsdl:input wsaw:Action="http://nlptoolkit.cloudapp.net/IColloquialConverterService/SuggestConversion" message="tns:IColloquialConverterService_SuggestConversion_InputMessage" />
+      <wsdl:output wsaw:Action="http://nlptoolkit.cloudapp.net/IColloquialConverterService/SuggestConversionResponse" message="tns:IColloquialConverterService_SuggestConversion_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HTTP_IColloquialConverterService" type="tns:IColloquialConverterService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConvertText">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertText" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertTextWithDetails">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertTextWithDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertWord">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertWord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestConversion">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IColloquialConverterService/SuggestConversion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="HTTPS_IColloquialConverterService" type="tns:IColloquialConverterService">
+    <wsp:PolicyReference URI="#HTTPS_IColloquialConverterService_policy" />
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ConvertText">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertText" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertTextWithDetails">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertTextWithDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConvertWord">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IColloquialConverterService/ConvertWord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SuggestConversion">
+      <soap:operation soapAction="http://nlptoolkit.cloudapp.net/IColloquialConverterService/SuggestConversion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ColloquialConverterService">
+    <wsdl:port name="HTTP_IColloquialConverterService" binding="tns:HTTP_IColloquialConverterService">
+      <soap:address location="http://rd00155d4a25bd/Services/ColloquialConverterService.svc" />
+    </wsdl:port>
+    <wsdl:port name="HTTPS_IColloquialConverterService" binding="tns:HTTPS_IColloquialConverterService">
+      <soap:address location="https://atks.microsoft.com/Services/ColloquialConverterService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

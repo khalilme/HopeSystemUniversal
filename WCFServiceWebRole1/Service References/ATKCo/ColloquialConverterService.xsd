@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://nlptoolkit.cloudapp.net" elementFormDefault="qualified" targetNamespace="http://nlptoolkit.cloudapp.net" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="ConvertText">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inText" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConvertTextResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ConvertTextResult" type="tns:ColloquialConverterErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="outText" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:simpleType name="ColloquialConverterErrorCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="ErrorNonInitialized" />
+      <xs:enumeration value="ErrorAccessDenied" />
+      <xs:enumeration value="ErrorQuotaExceeded" />
+      <xs:enumeration value="ErrorAuthentication" />
+      <xs:enumeration value="ErrorMaxLengthExceeded" />
+      <xs:enumeration value="ErrorUnknown" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ConvertTextWithDetails">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inText" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConvertTextWithDetailsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ConvertTextWithDetailsResult" type="tns:ColloquialConverterErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="outText" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="words" type="tns:ArrayOfColloquialWordMap" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfColloquialWordMap">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ColloquialWordMap" nillable="true" type="tns:ColloquialWordMap" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ColloquialWordMap">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Word" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ColloquialWord" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Translations" type="tns:ArrayOfTranslation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfTranslation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Translation" nillable="true" type="tns:Translation" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Translation">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="Word" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="WordAnalysis" type="tns:Analysis" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ColloquialAnalysis" type="tns:Analysis" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Analysis">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="Probability" type="xs:float" />
+      <xs:element minOccurs="1" maxOccurs="1" name="NominativeNunatable" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="GeneativeNunatable" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="AccusativeNunatable" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Nunatable" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Title" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="ProperName" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="BorrowedWord" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Nunation" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="DefinitiveAL" type="xs:int" />
+      <xs:element minOccurs="1" maxOccurs="1" name="CaseEnding" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Suffix3" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Suffix2" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Suffix1" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prefix3" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prefix2" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Prefix1" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="Pos" type="xs:unsignedShort" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MorphSyntacticFeatures" type="xs:unsignedLong" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Pattern" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Root" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="Stem" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="DiacToken" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ConvertWord">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="word" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ConvertWordResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="ConvertWordResult" type="tns:ColloquialConverterErrorCode" />
+        <xs:element minOccurs="0" maxOccurs="1" name="translations" type="tns:ArrayOfString" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="ArrayOfString">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SuggestConversion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="appId" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="inText" type="xs:string" />
+        <xs:element minOccurs="0" maxOccurs="1" name="suggestedText" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SuggestConversionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="SuggestConversionResult" type="tns:ColloquialConverterErrorCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
